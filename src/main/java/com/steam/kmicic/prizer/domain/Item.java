@@ -1,5 +1,6 @@
-package com.steam.kmicic.prizer.model;
+package com.steam.kmicic.prizer.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,9 +19,14 @@ public class Item {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
+    @JsonProperty("id")
     private Integer id;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("purchasePrice")
     private BigDecimal purchasePrice;
+    @JsonProperty("currentSteamPrice")
     private BigDecimal currentSteamPrice;
+    @JsonProperty("quantity")
     private int quantity;
 }

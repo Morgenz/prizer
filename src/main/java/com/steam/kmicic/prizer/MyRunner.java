@@ -1,7 +1,7 @@
 package com.steam.kmicic.prizer;
 
-import com.steam.kmicic.prizer.model.Item;
-import com.steam.kmicic.prizer.model.ItemRepository;
+import com.steam.kmicic.prizer.domain.Item;
+import com.steam.kmicic.prizer.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
