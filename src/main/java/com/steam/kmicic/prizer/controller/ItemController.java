@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -24,13 +25,24 @@ public class ItemController {
     }
 
     @GetMapping("/{id}")
-    public Item allItems(@PathVariable String id) {
+    public Item findAllItems(@PathVariable String id) {
         return (Item) itemRepository.findById(Integer.parseInt(id)).orElseThrow(() -> new NoSuchElementException("No item with given Id:" + id));
     }
 
-    @PostMapping(consumes = "application/json", produces = "application/json" )
-    public void add(@RequestBody Item item) {
+    @PostMapping
+    public void addItem(@RequestBody Item item) {
         itemRepository.save(item);
     }
 
+    @PutMapping("/{id}")
+    public void updateItem(@RequestBody Item item, @PathVariable String id) throws NoSuchElementException {
+        itemRepository.findById(Integer.parseInt(id)).orElseThrow(() -> new NoSuchElementException("No item with given Id:" + id));
+        item.setId(Integer.parseInt(id));
+        itemRepository.save(item);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteItem(@PathVariable String id){
+        itemRepository.findById(Integer.parseInt(id)).orElseThrow(() -> new NoSuchElementException("No item with given Id:" + id));
+        itemRepository.deleteById(Integer.parseInt(id));
+    }
 }
