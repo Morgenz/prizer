@@ -2,13 +2,12 @@ package com.steam.kmicic.prizer.controller;
 
 import com.steam.kmicic.prizer.domain.Item;
 import com.steam.kmicic.prizer.repository.ItemRepository;
-import javassist.NotFoundException;
+import com.steam.kmicic.prizer.serivce.SteamMarketRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
+import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -18,6 +17,9 @@ public class ItemController {
 
     @Autowired
     ItemRepository itemRepository;
+
+    @Autowired
+    SteamMarketRequestService steamMarketRequestService;
 
     @GetMapping("/all")
     public List<Item> allItems(Model model) {
@@ -30,15 +32,15 @@ public class ItemController {
     }
 
     @PostMapping
-    public void addItem(@RequestBody Item item) {
-        itemRepository.save(item);
+    public void addItem(@RequestBody Item item) throws IOException, InterruptedException {
+        itemRepository.save(steamMarketRequestService.getMarketItemInfo(item));
     }
 
     @PutMapping("/{id}")
-    public void updateItem(@RequestBody Item item, @PathVariable String id) throws NoSuchElementException {
+    public void updateItem(@RequestBody Item item, @PathVariable String id) throws NoSuchElementException, IOException, InterruptedException {
         itemRepository.findById(Integer.parseInt(id)).orElseThrow(() -> new NoSuchElementException("No item with given Id:" + id));
         item.setId(Integer.parseInt(id));
-        itemRepository.save(item);
+        itemRepository.save(steamMarketRequestService.getMarketItemInfo(item));
     }
     @DeleteMapping("/{id}")
     public void deleteItem(@PathVariable String id){

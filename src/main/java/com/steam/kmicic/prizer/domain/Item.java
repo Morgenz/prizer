@@ -1,5 +1,6 @@
 package com.steam.kmicic.prizer.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,18 +16,27 @@ import java.math.BigDecimal;
 @Data
 @Entity
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Item {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     @JsonProperty("id")
     private Integer id;
+    @JsonProperty("app_id")
+    private Integer gameId;
     @JsonProperty("name")
     private String name;
+    @JsonProperty("market_hash_name")
+    private String marketHashName;
     @JsonProperty("purchasePrice")
     private BigDecimal purchasePrice;
-    @JsonProperty("currentSteamPrice")
-    private BigDecimal currentSteamPrice;
+    @JsonProperty("lowest_price")
+    private String currentSteamPrice;
+    @JsonProperty("median_price")
+    private String medianPrice;
+    @JsonProperty("volume")
+    private int volume;
     @JsonProperty("quantity")
     private int quantity;
 }
