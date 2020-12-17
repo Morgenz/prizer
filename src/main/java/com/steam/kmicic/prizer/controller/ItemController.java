@@ -27,8 +27,8 @@ public class ItemController {
     }
 
     @GetMapping("/{id}")
-    public Item findAllItems(@PathVariable String id) {
-        return (Item) itemRepository.findById(Integer.parseInt(id)).orElseThrow(() -> new NoSuchElementException("No item with given Id:" + id));
+    public Item findAllItems(@PathVariable Integer id) {
+        return (Item) itemRepository.findById(id.toString()).orElseThrow(() -> new NoSuchElementException("No item with given Id:" + id));
     }
 
     @PostMapping
@@ -37,14 +37,14 @@ public class ItemController {
     }
 
     @PutMapping("/{id}")
-    public void updateItem(@RequestBody Item item, @PathVariable String id) throws NoSuchElementException, IOException, InterruptedException {
-        itemRepository.findById(Integer.parseInt(id)).orElseThrow(() -> new NoSuchElementException("No item with given Id:" + id));
-        item.setId(Integer.parseInt(id));
+    public void updateItem(@RequestBody Item item, @PathVariable Integer id) throws NoSuchElementException, IOException, InterruptedException {
+        itemRepository.findById(id.toString()).orElseThrow(() -> new NoSuchElementException("No item with given Id:" + id));
+        item.setId(id);
         itemRepository.save(steamMarketRequestService.getMarketItemInfo(item));
     }
     @DeleteMapping("/{id}")
     public void deleteItem(@PathVariable String id){
-        itemRepository.findById(Integer.parseInt(id)).orElseThrow(() -> new NoSuchElementException("No item with given Id:" + id));
-        itemRepository.deleteById(Integer.parseInt(id));
+        itemRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No item with given Id:" + id));
+        itemRepository.deleteById(id);
     }
 }

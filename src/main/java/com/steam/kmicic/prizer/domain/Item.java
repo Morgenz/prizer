@@ -1,15 +1,14 @@
 package com.steam.kmicic.prizer.domain;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @AllArgsConstructor
@@ -19,11 +18,13 @@ import java.math.BigDecimal;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Item {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     @JsonProperty("id")
+    @JsonAlias("classid")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @JsonProperty("app_id")
+    @JsonAlias("appid")
     private Integer gameId;
     @JsonProperty("name")
     private String name;
@@ -35,8 +36,9 @@ public class Item {
     private String currentSteamPrice;
     @JsonProperty("median_price")
     private String medianPrice;
-    @JsonProperty("volume")
-    private int volume;
-    @JsonProperty("quantity")
-    private int quantity;
+    @JsonProperty("amount")
+    private int amount;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="listing_idd")
+    private Listing lis;
 }
