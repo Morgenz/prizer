@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.steam.kmicic.prizer.domain.Item;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ import java.util.Set;
 public class SteamMarketRequestService {
 
     public static final String BASIC_STEAM_MARKET_URL = "https://steamcommunity.com/market/priceoverview/";
-    public static final String BASIC_STEAM_INVENTORY_URL = "http://steamcommunity.com/inventory/";
+    public static final String BASIC_STEAM_INVENTORY_URL = "https://steamcommunity.com/inventory/";
     public static final String STEAM_MARKET_HASH_NAME = "?market_hash_name=";
     public static final String STEAM_MARKET_GAME_ID = "&appid=";
     public static final String STEAM_MARKET_CURRENCY_ID = "&currency";
@@ -29,6 +30,8 @@ public class SteamMarketRequestService {
     public static final Integer EURO_ID = 3;
     private final HttpClient client = HttpClient.newBuilder().build();
 
+    @Autowired
+    private JsonUtils jsonUtils;
 
     public Item getMarketItemInfo(Item item) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
@@ -46,14 +49,13 @@ public class SteamMarketRequestService {
         Set<Item> itemSet = new HashSet<>();
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .header("accept", "application/json")
                 .uri(URI.create(getAccountURI(steamAccountID, gameId)))
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
 
-        response.body();
+        jsonUtils.mapSteamInventory(response.body());
     }
 
     private String getItemURI(Item item) {
@@ -70,7 +72,6 @@ public class SteamMarketRequestService {
     private String getAccountURI(String steamAccountID, String gameId) {
         StringBuilder stringBuilder = new StringBuilder(BASIC_STEAM_INVENTORY_URL);
         stringBuilder
-                .append("/")
                 .append(steamAccountID)
                 .append("/")
                 .append(gameId)
