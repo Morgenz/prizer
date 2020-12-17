@@ -1,5 +1,6 @@
 package com.steam.kmicic.prizer.domain;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class Listing {
     private Integer id;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
+    @NotNull
     private User user;
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "lis")
     private List<Item> items;
