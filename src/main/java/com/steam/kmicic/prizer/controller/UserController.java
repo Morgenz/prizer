@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("/user")
@@ -18,8 +20,7 @@ public class UserController {
     UserRepository userRepository;
 
     @PostMapping("/register")
-    public void register(@RequestBody User user) {
-
+    public void register(@Valid @RequestBody User user) {
         userRepository.save(user);
     }
 
