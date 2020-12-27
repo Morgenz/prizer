@@ -43,12 +43,17 @@ public class SteamMarketRequestService {
     }
 
 
-    public List<Item> getItemsFromSteamAccount(String steamAccountID, String gameId) throws IOException, InterruptedException {
+    public List<Item> getItemsFromSteamAccount(String steamAccountID, String gameId) {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .uri(URI.create(getAccountURI(steamAccountID, gameId)))
                 .build();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = null;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return jsonUtils.parseSteamInventory(response.body());

@@ -4,7 +4,6 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,11 +15,13 @@ import java.util.List;
 public class Listing {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private String id;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     @NotNull
-    private User user;
+    private ApplicationUser applicationUser;
+    @NotNull
+    private boolean isSteamInventoryList;
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "lis")
     private List<Item> items;
 }
