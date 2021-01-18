@@ -17,8 +17,8 @@ public class ItemService {
     @Autowired
     SteamMarketItemService steamMarketItemService;
 
-    public void addItem(Item item) {
-        itemRepository.save(item);
+    public Item addItem(Item item) {
+       return itemRepository.save(item);
     }
 
     public List<Item> getAllItems() {
@@ -29,15 +29,15 @@ public class ItemService {
         return itemRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No item with given Id:" + id));
     }
 
-    public void updateItemById(Item item, String id) {
+    public Item updateItemById(Item item, String id) {
         itemRepository.findById(id.toString()).orElseThrow(() -> new NoSuchElementException("No item with given Id:" + id));
-        itemRepository.save(item);
+        return itemRepository.save(item);
     }
 
-    public void updateSteamItemInformation(Item item, String id) {
+    public Item updateSteamItemInformation(Item item, String id) {
         itemRepository.findById(id.toString()).orElseThrow(() -> new NoSuchElementException("No item with given Id:" + id));
         steamMarketItemService.updateMarketInfo(item);
-        itemRepository.save(item);
+        return itemRepository.save(item);
     }
 
     public void deleteItem(String id) {

@@ -13,5 +13,5 @@ public class Role {
     private Long id;
     @ManyToMany
     private List<ApplicationUser> applicationUsers;
-    private String name;
+    private String roleName;
 }

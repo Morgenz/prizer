@@ -1,8 +1,5 @@
 package com.steam.kmicic.prizer;
 
-import com.steam.kmicic.prizer.domain.Item;
-import com.steam.kmicic.prizer.domain.Listing;
-import com.steam.kmicic.prizer.domain.User;
 import com.steam.kmicic.prizer.repository.ItemRepository;
 import com.steam.kmicic.prizer.repository.ListingRepository;
 import com.steam.kmicic.prizer.repository.UserRepository;
@@ -12,14 +9,6 @@ import com.steam.kmicic.prizer.serivce.SteamMarketRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class MyRunner implements CommandLineRunner {
@@ -44,12 +33,12 @@ public class MyRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
-        List<Item> items=steamMarketRequestService.getItemsFromSteamAccount("76561198052055612","730");
-
-        items.forEach(item -> steamMarketItemService.updateMarketInfo(item));
-
-        System.out.println(items);
+//
+//        List<Item> items=steamMarketRequestService.getItemsFromSteamAccount("76561198052055612","730");
+//
+//        items.forEach(item -> steamMarketItemService.updateMarketInfo(item));
+//
+//        System.out.println(items);
 //        List<Item> items = new LinkedList<>();
 //        Item item1 = new Item();
 //        Item item2 = new Item();
