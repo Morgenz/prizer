@@ -11,11 +11,14 @@ import java.util.NoSuchElementException;
 @Service
 public class ItemService {
 
-    @Autowired
-    ItemRepository itemRepository;
+    private ItemRepository itemRepository;
 
-    @Autowired
-    SteamMarketItemService steamMarketItemService;
+    private SteamMarketItemService steamMarketItemService;
+
+    public ItemService(ItemRepository itemRepository, SteamMarketItemService steamMarketItemService) {
+        this.itemRepository = itemRepository;
+        this.steamMarketItemService = steamMarketItemService;
+    }
 
     public Item addItem(Item item) {
        return itemRepository.save(item);

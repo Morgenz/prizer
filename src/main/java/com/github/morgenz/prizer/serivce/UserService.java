@@ -14,17 +14,17 @@ import java.util.List;
 @Service
 public class UserService {
 
-    @Autowired
     private ListingService listingService;
-
-    @Autowired
     private PasswordEncoderConfig passwordEncoderConfig;
-
-    @Autowired
     private UserRepository userRepository;
-
-    @Autowired
     private RoleRepository roleRepository;
+
+    public UserService(ListingService listingService, PasswordEncoderConfig passwordEncoderConfig, UserRepository userRepository, RoleRepository roleRepository) {
+        this.listingService = listingService;
+        this.passwordEncoderConfig = passwordEncoderConfig;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+    }
 
     public void register(ApplicationUser applicationUser) {
         if (applicationUser.getRoles() == null) {

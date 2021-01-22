@@ -11,8 +11,11 @@ import java.util.List;
 @Service
 public class ListingService {
 
-    @Autowired
-    SteamMarketRequestService steamMarketRequestService;
+    private SteamMarketRequestService steamMarketRequestService;
+
+    public ListingService(SteamMarketRequestService steamMarketRequestService) {
+        this.steamMarketRequestService = steamMarketRequestService;
+    }
 
     public void updateSteamListing(ApplicationUser applicationUser, Listing listing) {
         listing.setItems(steamMarketRequestService.getItemsFromSteamAccount(applicationUser.getSteamId(), "720"));

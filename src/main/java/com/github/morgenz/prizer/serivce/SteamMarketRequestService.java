@@ -26,8 +26,11 @@ public class SteamMarketRequestService {
     public static final Integer EURO_ID = 3;
     private final HttpClient client = HttpClient.newBuilder().build();
 
-    @Autowired
     private JsonUtils jsonUtils;
+
+    public SteamMarketRequestService(JsonUtils jsonUtils) {
+        this.jsonUtils = jsonUtils;
+    }
 
     public SteamMarketItemInfo getMarketItemInfo(Item item) throws IOException, InterruptedException {
         SteamMarketItemInfo steamMarketItemInfo = new SteamMarketItemInfo();

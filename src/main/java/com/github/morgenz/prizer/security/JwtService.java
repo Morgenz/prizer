@@ -7,7 +7,6 @@ import java.util.Date;
 
 public class JwtService {
 
-
     public static final int tokenExpirationTime = 30 * 60 * 1000;
     public static final String TOKEN_KEY = "SecretKeyToGenJWTs";
     public static final String TOKEN_PREFIX = "Bearer ";

@@ -23,14 +23,15 @@ import java.util.NoSuchElementException;
 @RequestMapping("/items")
 public class ItemController {
 
-    @Autowired
     private ItemService itemService;
-
-    @Autowired
     private ItemRepository itemRepository;
-
-    @Autowired
     private SteamMarketItemService steamMarketItemService;
+
+    public ItemController(ItemService itemService, ItemRepository itemRepository, SteamMarketItemService steamMarketItemService) {
+        this.itemService = itemService;
+        this.itemRepository = itemRepository;
+        this.steamMarketItemService = steamMarketItemService;
+    }
 
     @GetMapping()
     public List<Item> allItems() {

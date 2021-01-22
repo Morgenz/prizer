@@ -11,8 +11,11 @@ import java.math.BigDecimal;
 @Service
 public class SteamMarketItemService {
 
-    @Autowired
     private SteamMarketRequestService steamMarketRequestService;
+
+    public SteamMarketItemService(SteamMarketRequestService steamMarketRequestService) {
+        this.steamMarketRequestService = steamMarketRequestService;
+    }
 
     public void updateMarketInfo(Item item) {
         try {

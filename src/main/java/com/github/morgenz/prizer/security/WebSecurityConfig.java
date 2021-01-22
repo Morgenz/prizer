@@ -16,11 +16,14 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
     private UserDetailsServiceImpl userDetailsService;
+    private PasswordEncoderConfig passwordEncoderConfig;
 
     @Autowired
-    private PasswordEncoderConfig passwordEncoderConfig;
+    public WebSecurityConfig(UserDetailsServiceImpl userDetailsService, PasswordEncoderConfig passwordEncoderConfig) {
+        this.userDetailsService = userDetailsService;
+        this.passwordEncoderConfig = passwordEncoderConfig;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

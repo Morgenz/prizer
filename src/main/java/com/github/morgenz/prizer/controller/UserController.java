@@ -18,11 +18,13 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
-    @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
+    private UserService userService;
 
-    @Autowired
-    UserService userService;
+    public UserController(UserRepository userRepository, UserService userService) {
+        this.userRepository = userRepository;
+        this.userService = userService;
+    }
 
     @PostMapping("/register")
     public void register(@Valid @RequestBody ApplicationUser applicationUser) {
