@@ -1,7 +1,5 @@
 package com.steam.kmicic.prizer.repository;
 
-import com.steam.kmicic.prizer.domain.ApplicationUser;
-import com.steam.kmicic.prizer.domain.Listing;
 import com.steam.kmicic.prizer.domain.Role;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
