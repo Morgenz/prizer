@@ -1,11 +1,10 @@
 package com.github.morgenz.prizer.serivce;
 
 import com.github.morgenz.prizer.domain.ApplicationUser;
-import com.github.morgenz.prizer.security.PasswordEncoderConfig;
 import com.github.morgenz.prizer.domain.Listing;
 import com.github.morgenz.prizer.repository.RoleRepository;
 import com.github.morgenz.prizer.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.github.morgenz.prizer.security.PasswordEncoderConfig;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
