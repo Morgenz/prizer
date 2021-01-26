@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.github.morgenz.prizer.domain.Item;
 import com.github.morgenz.prizer.domain.SteamMarketItemInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -37,7 +36,7 @@ public class SteamMarketRequestService {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .header("accept", "application/json")
-                .uri(URI.create(getItemURI(item)))
+                .uri(URI.create(getItemUri(item)))
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         ObjectMapper objectMapper = new ObjectMapper();
@@ -49,7 +48,7 @@ public class SteamMarketRequestService {
     public List<Item> getItemsFromSteamAccount(String steamAccountID, String gameId) {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create(getAccountURI(steamAccountID, gameId)))
+                .uri(URI.create(getAccountUri(steamAccountID, gameId)))
                 .build();
         HttpResponse<String> response = null;
         try {
@@ -63,26 +62,19 @@ public class SteamMarketRequestService {
     }
 
 
-    private String getItemURI(Item item) {
-        StringBuilder stringBuilder = new StringBuilder(BASIC_STEAM_MARKET_URL);
-        stringBuilder.append(STEAM_MARKET_HASH_NAME)
-                .append(item.getMarketHashName())
-                .append(STEAM_MARKET_GAME_ID)
-                .append(item.getGameId())
-                .append(STEAM_MARKET_CURRENCY_ID)
-                .append(EURO_ID);
-        return stringBuilder.toString().replace(" ", "%20").replace("|", "%7C");
+    private String getItemUri(Item item) {
+        String stringBuilder = BASIC_STEAM_MARKET_URL +
+                STEAM_MARKET_HASH_NAME +
+                item.getMarketHashName() +
+                STEAM_MARKET_GAME_ID +
+                item.getGameId() +
+                STEAM_MARKET_CURRENCY_ID +
+                EURO_ID;
+        return stringBuilder.replace(" ", "%20").replace("|", "%7C");
     }
 
-    private String getAccountURI(String steamAccountID, String gameId) {
-        StringBuilder stringBuilder = new StringBuilder(BASIC_STEAM_INVENTORY_URL);
-        stringBuilder
-                .append(steamAccountID)
-                .append("/")
-                .append(gameId)
-                .append("/")
-                .append(2);
-        return stringBuilder.toString();
+    private String getAccountUri(String steamAccountID, String gameId) {
+        return BASIC_STEAM_INVENTORY_URL + steamAccountID + "/" + gameId + "/" + 2;
     }
 }
 
