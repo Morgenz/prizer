@@ -1,6 +1,6 @@
 package com.github.morgenz.prizer.repository;
 
-import com.github.morgenz.prizer.domain.Listing;
+import com.github.morgenz.prizer.domain.entity.Listing;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
 package com.github.morgenz.prizer.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.morgenz.prizer.domain.ApplicationUser;
+import com.github.morgenz.prizer.domain.entity.ApplicationUser;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

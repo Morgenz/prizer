@@ -1,6 +1,6 @@
 package com.github.morgenz.prizer.serivce;
 
-import com.github.morgenz.prizer.domain.ApplicationUser;
+import com.github.morgenz.prizer.domain.entity.ApplicationUser;
 import com.github.morgenz.prizer.repository.UserRepository;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

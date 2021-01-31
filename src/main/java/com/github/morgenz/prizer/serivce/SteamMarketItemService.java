@@ -1,7 +1,7 @@
 package com.github.morgenz.prizer.serivce;
 
-import com.github.morgenz.prizer.domain.Item;
-import com.github.morgenz.prizer.domain.SteamMarketItemInfo;
+import com.github.morgenz.prizer.domain.entity.Item;
+import com.github.morgenz.prizer.domain.entity.SteamMarketItemInfo;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

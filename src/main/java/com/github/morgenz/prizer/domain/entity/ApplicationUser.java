@@ -1,4 +1,4 @@
-package com.github.morgenz.prizer.domain;
+package com.github.morgenz.prizer.domain.entity;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;

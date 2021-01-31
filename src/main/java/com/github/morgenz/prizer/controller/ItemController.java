@@ -1,6 +1,6 @@
 package com.github.morgenz.prizer.controller;
 
-import com.github.morgenz.prizer.domain.Item;
+import com.github.morgenz.prizer.domain.entity.Item;
 import com.github.morgenz.prizer.repository.ItemRepository;
 import com.github.morgenz.prizer.serivce.ItemService;
 import com.github.morgenz.prizer.serivce.SteamMarketItemService;

@@ -1,8 +1,8 @@
 package com.github.morgenz.prizer.serivce;
 
-import com.github.morgenz.prizer.domain.ApplicationUser;
-import com.github.morgenz.prizer.domain.Item;
-import com.github.morgenz.prizer.domain.Listing;
+import com.github.morgenz.prizer.domain.entity.ApplicationUser;
+import com.github.morgenz.prizer.domain.entity.Item;
+import com.github.morgenz.prizer.domain.entity.Listing;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

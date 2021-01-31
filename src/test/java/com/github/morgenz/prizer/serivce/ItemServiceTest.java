@@ -1,6 +1,6 @@
 package com.github.morgenz.prizer.serivce;
 
-import com.github.morgenz.prizer.domain.Item;
+import com.github.morgenz.prizer.domain.entity.Item;
 import com.github.morgenz.prizer.repository.ItemRepository;
 import org.junit.Assert;
 import org.junit.Before;

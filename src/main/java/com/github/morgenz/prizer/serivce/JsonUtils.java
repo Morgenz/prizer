@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.morgenz.prizer.domain.Item;
+import com.github.morgenz.prizer.domain.entity.Item;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

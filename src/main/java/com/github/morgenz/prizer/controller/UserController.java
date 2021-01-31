@@ -1,6 +1,7 @@
 package com.github.morgenz.prizer.controller;
 
-import com.github.morgenz.prizer.domain.ApplicationUser;
+import com.github.morgenz.prizer.domain.dto.ApplicationUserDto;
+import com.github.morgenz.prizer.domain.entity.ApplicationUser;
 import com.github.morgenz.prizer.repository.UserRepository;
 import com.github.morgenz.prizer.serivce.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +27,9 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public void register(@Valid @RequestBody ApplicationUser applicationUser) {
-        userService.register(applicationUser);
+    public ApplicationUser register(@Valid @RequestBody ApplicationUserDto applicationUserDto) {
+
+        return userService.register(applicationUserDto);
     }
 
     @GetMapping()

@@ -1,4 +1,4 @@
-package com.github.morgenz.prizer.domain;
+package com.github.morgenz.prizer.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

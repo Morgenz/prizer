@@ -3,8 +3,8 @@ package com.github.morgenz.prizer.serivce;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
-import com.github.morgenz.prizer.domain.Item;
-import com.github.morgenz.prizer.domain.SteamMarketItemInfo;
+import com.github.morgenz.prizer.domain.entity.Item;
+import com.github.morgenz.prizer.domain.entity.SteamMarketItemInfo;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
